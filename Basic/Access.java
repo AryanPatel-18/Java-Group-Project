@@ -32,4 +32,24 @@ public class Access {
         // for checking if the user is admin
         return false;
     }
+
+    public int checkPermission(String id){
+        if(id.charAt(0) == 'A' && id.charAt(1) == 'D'){
+            return 1;
+        }
+        if(id.charAt(0) == 'S' && id.charAt(0) == 'T'){
+            return 2;
+        }
+        if(id.charAt(0) == 'S' && id.charAt(0) == 'F'){
+            return 3;
+        }
+        if(id.charAt(0) == 'P' && id.charAt(0) == 'F'){
+            return 4;
+        }
+        if(id.equals("SPmain")){
+            return 5;
+        }
+        return 0;
+    }
+
 }
