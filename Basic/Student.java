@@ -20,6 +20,7 @@ public class Student {
         System.out.print("Enter your Address : ");
         String address = sc.nextLine();
         String enrollmentNumber = "" + generateEnrollmentNumber();
+        createFiles(id);
         
         
 
@@ -65,6 +66,17 @@ public class Student {
             System.out.println("There was a problem while reading the enrollment number file");
         }
         return false;
+    }
+
+    private void createFiles(String id)
+    {
+        try{
+            File privateReminders = new File("Reminders/Students/Private/" + id + ".txt");
+            File publicReminders = new File("Reminders/Students/public/" + id + ".txt");
+        }catch(Exception e){
+            System.out.println("There was a problem while creatingt the requisite files for student");
+        }
+
     }
 
 

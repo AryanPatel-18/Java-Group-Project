@@ -12,4 +12,17 @@ public class Reminders {
     public void clearReminders(String id){
         // To clear All reminders
     }
+
+    public void displayUniReminders(){
+
+    }
+
+    public void displayPriReminder(String id){
+
+    }
+
+    public boolean checkReminders(){
+        
+        return false;
+    }
 }

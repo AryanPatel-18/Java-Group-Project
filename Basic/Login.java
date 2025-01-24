@@ -77,7 +77,18 @@ public class Login {
     }
 
     final private static void normalMenu(String id){
+
+        System.out.println("\n\n\n");
+        System.out.println("Welcome " + id + "!");
+
         // Main menu for the student database
+        System.out.println("-------------------------------\n");
+        System.out.println("1) View Attendence");
+        System.out.println("2) View Time Table");
+        System.out.println("3) Send Private Message");
+        System.out.println("4) Clear Reminders");
+        System.out.println("5) View Reminders");
+        System.out.println("--------------------------------\n\n");
     }
 
     final private static void adminMenu(String id){
