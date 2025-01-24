@@ -10,11 +10,26 @@ public class Login {
     // All the objects for this class
     Scanner sc = new Scanner(System.in);
     Access a = new Access();
+    Reminders r = new Reminders();
+    
 
     public void login(){
         System.out.print("Please enter your login id : ");
         String id = sc.next();
         int option = a.checkPermission(id);
+        String designation = "";
+
+        if(option == 1){designation = "Admin";};
+        if(option == 2){designation = "Student";};
+        if(option == 3){designation = "Staff";};
+        if(option == 4){designation = "Professor";};
+
+        if(checkPassword(id, designation)){
+            System.out.println("The password you have entered is incorrect please try again later");
+            System.exit(0);
+        }
+
+
         boolean exists = false;
 
         // Showing the appropriate menu according to the id
@@ -76,11 +91,14 @@ public class Login {
         return false;
     }
 
-    final private static void normalMenu(String id){
+    final private void normalMenu(String id){
 
         System.out.println("\n\n\n");
         System.out.println("Welcome " + id + "!");
 
+        System.out.println("----- REMINDER -------\n\n");
+        r.displayReminders(id, "public");
+        System.out.println("\n\n\n");
         // Main menu for the student database
         System.out.println("-------------------------------\n");
         System.out.println("1) View Attendence");
@@ -91,20 +109,37 @@ public class Login {
         System.out.println("--------------------------------\n\n");
     }
 
-    final private static void adminMenu(String id){
+    final private void adminMenu(String id){
 
     }
 
-    final private static void proffessorMenu(String id){
+    final private void proffessorMenu(String id){
 
     }
 
-    final private static void superMenu(String id){
+    final private void superMenu(String id){
 
     }
     
-    final private static void staffMenu(String id){
+    final private void staffMenu(String id){
 
     }
+
+    public boolean checkPassword(String id, String path){
+        System.out.print("Please enter the password for the id : ");
+        String inputPsw = sc.next();
+        
+
+        try (BufferedReader reader = new BufferedReader(new FileReader("Passwords/" + path + "/" + id + ".txt" ))){
+            String actualPsw = reader.readLine();
+            if(actualPsw.equals(inputPsw)){
+                return true;
+            }
+        } catch (Exception e) {
+            System.out.println("There was a problem while verifying the password");
+        }
+        return false;
+    }
+    
 
 }

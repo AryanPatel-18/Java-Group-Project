@@ -21,7 +21,9 @@ public class Create {
         String id = "ST" + firstName.toUpperCase().charAt(0) + lastName.toUpperCase().charAt(0) + getId("Student");
         updateId("Student");
         registerUser(id, "Student");
+        setPassword(id, "Student");
         s.addInformation(id, firstName, lastName); 
+        
 
     }
 
@@ -72,4 +74,17 @@ public class Create {
             System.out.println("There was a problem while updating the id number");
         }
     }
+
+    private void setPassword(String id, String path){
+        System.out.print("Please enter the password you want for the id : ");
+        String psw = sc.next();
+        
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter("Passwords/" + path + "/" + id + ".txt"))){
+            writer.write(psw);
+        } catch (Exception e) {
+            System.out.println("There was a problem while saving the password");
+        }
+    }
+
+
 }
