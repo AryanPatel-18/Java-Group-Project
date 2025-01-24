@@ -10,9 +10,6 @@ class Main{
         Create c = new Create();
 
         // First setup menu
-
-
-        while(true){
             System.out.println("------------------------------------\n");
             System.out.println("1) Login");
             System.out.println("2) Register");
@@ -36,7 +33,6 @@ class Main{
                     System.out.println("Please enter a valid input");
                     break;
             }
-        }
 
     }
 

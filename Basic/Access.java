@@ -37,13 +37,13 @@ public class Access {
         if(id.charAt(0) == 'A' && id.charAt(1) == 'D'){
             return 1;
         }
-        if(id.charAt(0) == 'S' && id.charAt(0) == 'T'){
+        if(id.charAt(0) == 'S' && id.charAt(1) == 'T'){
             return 2;
         }
-        if(id.charAt(0) == 'S' && id.charAt(0) == 'F'){
+        if(id.charAt(0) == 'S' && id.charAt(1) == 'F'){
             return 3;
         }
-        if(id.charAt(0) == 'P' && id.charAt(0) == 'F'){
+        if(id.charAt(0) == 'P' && id.charAt(1) == 'F'){
             return 4;
         }
         if(id.equals("SPmain")){

@@ -9,6 +9,7 @@ public class Create {
     // All the objects needed for the class
     Login l = new Login();
     Scanner sc = new Scanner(System.in);
+    Student s = new Student();
 
     public void studentUser(){
         System.out.print("Please enter your first name : ");
@@ -19,7 +20,8 @@ public class Create {
         // Specific way to create user id
         String id = "ST" + firstName.toUpperCase().charAt(0) + lastName.toUpperCase().charAt(0) + getId("Student");
         updateId("Student");
-        registerUser(id, "Student"); 
+        registerUser(id, "Student");
+        s.addInformation(id, firstName, lastName); 
 
     }
 
