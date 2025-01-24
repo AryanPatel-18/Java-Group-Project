@@ -72,7 +72,9 @@ public class Student {
     {
         try{
             File privateReminders = new File("Reminders/Students/Private/" + id + ".txt");
+            privateReminders.createNewFile();
             File publicReminders = new File("Reminders/Students/public/" + id + ".txt");
+            publicReminders.createNewFile();
         }catch(Exception e){
             System.out.println("There was a problem while creatingt the requisite files for student");
         }
