@@ -23,7 +23,8 @@ public class Create {
         registerUser(id, "Student");
         setPassword(id, "Student");
         s.addInformation(id, firstName, lastName); 
-        
+        Main.createReminderFiles("Student", id);
+        Student.Menu(id);
 
     }
 

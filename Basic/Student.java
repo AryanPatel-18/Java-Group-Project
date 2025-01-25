@@ -8,6 +8,7 @@ public class Student extends Main {
     // All the objects for this class
     Scanner sc = new Scanner(System.in);
 
+
     public void viewAttendence(){
         // For viewing attendence
     }
@@ -68,7 +69,57 @@ public class Student extends Main {
         return false;
     }
 
+    public static void Menu(String id){
 
+        // All the objects for this static method
+        Reminders r = new Reminders();
+        Scanner sc = new Scanner(System.in);
+
+        System.out.println("\n\n\n");
+        System.out.println("Welcome " + id + "!");
+
+        System.out.println("----- REMINDER -------\n\n");
+        r.displayReminders(id, "public");
+        System.out.println("\n\n\n");
+
+
+        // Main menu for the student database
+        while(true){
+            System.out.println("-------------------------------\n");
+            System.out.println("1) View Attendence");
+            System.out.println("2) View Time Table");
+            System.out.println("3) Send Private Message");
+            System.out.println("4) Clear Reminders");
+            System.out.println("5) View Reminders");
+            System.out.println("6) Exit");
+            System.out.println("--------------------------------\n\n");
+
+            System.out.print("What do you want to do? : ");
+            int option = sc.nextInt();
+
+            switch (option) {
+                case 1:
+                    // For Attendence
+                    break;
+                case 2:
+                    // For viewing time table
+                case 3:
+                    // For sending private messages
+                case 4:
+                    // To clear private reminders
+                case 5:
+                    // To view private reminders
+                case 6:
+                    System.out.println("Exiting...");
+                    sc.close();
+                    System.exit(0);                        
+                    break;
+                default:
+                    System.out.println("Please enter a valid option");
+                    break;
+            }
+        }
+    }
 
 
 }

@@ -23,7 +23,7 @@ public class Reminders {
                 System.out.println(line);
             }
         } catch (Exception e) {
-            System.out.println("There was a problem while reading the " + type + "reminders");
+            System.out.println("There was a problem while reading the " + type + " reminders");
         }
     }
 

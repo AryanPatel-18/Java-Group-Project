@@ -9,7 +9,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 public class Clear {
-    public void clearDataBase(String id){
+    public void clearDataBase(){
         // For clearing the entire database
         String toBeCleared[] = {"Admin","Proffessor","Staff","Student"};
 
@@ -44,7 +44,7 @@ public class Clear {
         // if id is of admin we can run the admin delete function
     }
 
-    private void deleteAdmin(){
-        // For delete admin user
-    }
+    // private void deleteAdmin(){
+    //     // For delete admin user
+    // }
 }
