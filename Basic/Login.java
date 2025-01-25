@@ -16,8 +16,11 @@ public class Login {
     public void login(){
         System.out.print("Please enter your login id : ");
         String id = sc.next();
+
+        // All the variables
         int option = a.checkPermission(id);
         String designation = "";
+        boolean exists = false;
 
         if(option == 1){designation = "Admin";};
         if(option == 2){designation = "Student";};
@@ -28,9 +31,7 @@ public class Login {
             System.out.println("The password you have entered is incorrect please try again later");
             System.exit(0);
         }
-
-
-        boolean exists = false;
+        
 
         // Showing the appropriate menu according to the id
         switch (option) {

@@ -4,7 +4,7 @@ package Basic;
 import java.util.*;
 import java.io.*;
 
-public class Student {
+public class Student extends Main {
     // All the objects for this class
     Scanner sc = new Scanner(System.in);
 
@@ -13,14 +13,14 @@ public class Student {
     }
 
     public void addInformation(String id, String firstName, String lastName){
-
+        
         // Taking all the inputs
         System.out.print("Enter your mentor name : ");
         String mentorName = sc.nextLine();
         System.out.print("Enter your Address : ");
         String address = sc.nextLine();
         String enrollmentNumber = "" + generateEnrollmentNumber();
-        createFiles(id);
+        Main.createReminderFiles("Student", id);
         
         
 
@@ -68,18 +68,7 @@ public class Student {
         return false;
     }
 
-    private void createFiles(String id)
-    {
-        try{
-            File privateReminders = new File("Reminders/Students/Private/" + id + ".txt");
-            privateReminders.createNewFile();
-            File publicReminders = new File("Reminders/Students/public/" + id + ".txt");
-            publicReminders.createNewFile();
-        }catch(Exception e){
-            System.out.println("There was a problem while creatingt the requisite files for student");
-        }
 
-    }
 
 
 }
