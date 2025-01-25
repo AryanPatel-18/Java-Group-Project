@@ -24,23 +24,23 @@ public class Login {
         if (option == 1) {
             designation = "Admin";
         }
-        ;
+        
         if (option == 2) {
             designation = "Student";
         }
-        ;
+        
         if (option == 3) {
             designation = "Staff";
         }
-        ;
+        
         if (option == 4) {
             designation = "Professor";
         }
-        ;
+        
         if (option == 5) {
             designation = "Super";
         }
-        ;
+        
 
         if (!checkPassword(id, designation)) {
             System.out.println("The password you have entered is incorrect please try again later");
@@ -125,7 +125,7 @@ public class Login {
     }
 
 
-    
+
     public boolean checkPassword(String id, String path) {
         System.out.print("Please enter the password for the id : ");
         String inputPsw = sc.next();

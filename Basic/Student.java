@@ -8,13 +8,12 @@ public class Student extends Main {
     // All the objects for this class
     Scanner sc = new Scanner(System.in);
 
-
-    public void viewAttendence(){
+    public void viewAttendence() {
         // For viewing attendence
     }
 
-    public void addInformation(String id, String firstName, String lastName){
-        
+    public void addInformation(String id, String firstName, String lastName) {
+
         // Taking all the inputs
         System.out.print("Enter your mentor name : ");
         String mentorName = sc.nextLine();
@@ -22,10 +21,8 @@ public class Student extends Main {
         String address = sc.nextLine();
         String enrollmentNumber = "" + generateEnrollmentNumber();
         Main.createReminderFiles("Student", id);
-        
-        
 
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter("Ids/Student/" + id + ".txt"))){
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter("Ids/Student/" + id + ".txt"))) {
             writer.write(id + System.lineSeparator());
             writer.write(firstName + System.lineSeparator());
             writer.write(lastName + System.lineSeparator());
@@ -35,7 +32,7 @@ public class Student extends Main {
         } catch (Exception e) {
             System.out.println("There was problem while writing the student data");
         }
-        
+
         System.out.println("-------------------------------\n");
         System.out.println("Name: " + firstName + " " + lastName);
         System.out.println("Mentor Name : " + mentorName);
@@ -44,22 +41,22 @@ public class Student extends Main {
         System.out.println("--------------------------------\n\n");
     }
 
-    int generateEnrollmentNumber(){
+    int generateEnrollmentNumber() {
         Random random = new Random();
 
         // Generate a random 9-digit number
         int randomNineDigitNumber = 100000000 + random.nextInt(900000000);
-        if(!checkEnrollmentNumber(randomNineDigitNumber)){
+        if (!checkEnrollmentNumber(randomNineDigitNumber)) {
             return randomNineDigitNumber;
         }
         return generateEnrollmentNumber();
     }
 
-    boolean checkEnrollmentNumber(int number){
-        try (BufferedReader reader = new BufferedReader(new FileReader("Ids/Student/EnrollmentNumber.txt"))){
+    boolean checkEnrollmentNumber(int number) {
+        try (BufferedReader reader = new BufferedReader(new FileReader("Ids/Student/EnrollmentNumber.txt"))) {
             String line;
-            while((line = reader.readLine()) != null){
-                if((Integer.parseInt(line)) == number){
+            while ((line = reader.readLine()) != null) {
+                if ((Integer.parseInt(line)) == number) {
                     return true;
                 }
             }
@@ -69,7 +66,7 @@ public class Student extends Main {
         return false;
     }
 
-    public static void Menu(String id){
+    public static void Menu(String id) {
 
         // All the objects for this static method
         Reminders r = new Reminders();
@@ -78,13 +75,12 @@ public class Student extends Main {
         System.out.println("\n\n\n");
         System.out.println("Welcome " + id + "!");
 
-        System.out.println("----- REMINDER -------\n\n");
+        System.out.println("----- REMINDER -------");
         r.displayReminders(id, "public");
-        System.out.println("\n\n\n");
 
 
         // Main menu for the student database
-        while(true){
+        while (true) {
             System.out.println("-------------------------------\n");
             System.out.println("1) View Attendence");
             System.out.println("2) View Time Table");
@@ -104,15 +100,21 @@ public class Student extends Main {
                 case 2:
                     // For viewing time table
                 case 3:
-                    // For sending private messages
+                    r.sendReminder(id);
+                    break;
                 case 4:
-                    // To clear private reminders
+                    r.clearReminders(id, "Students");
+                    break;
+                // To clear private reminders
                 case 5:
-                    // To view private reminders
+                    System.out.println("----- REMINDER -------");
+                    r.displayReminders(id, "Private");
+                    break;
+                // To view private reminders
                 case 6:
                     System.out.println("Exiting...");
                     sc.close();
-                    System.exit(0);                        
+                    System.exit(0);
                     break;
                 default:
                     System.out.println("Please enter a valid option");
@@ -120,6 +122,5 @@ public class Student extends Main {
             }
         }
     }
-
 
 }
