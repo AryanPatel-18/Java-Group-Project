@@ -21,4 +21,9 @@ class Main {
             System.out.println("There was a problem while writing in the Public reminder file");
         }
     }
+
+    // Read particular line from the text file
+    public void readLine(int lineNumber){
+        // to read a specific line from the code
+    }
 }

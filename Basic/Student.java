@@ -8,8 +8,67 @@ public class Student extends Main {
     // All the objects for this class
     Scanner sc = new Scanner(System.in);
 
-    public void viewAttendence() {
-        // For viewing attendence
+    public void viewAttendence(String id) {
+        try (BufferedReader reader = new BufferedReader(new FileReader("Attendence/" + id + ".txt"))) {
+
+            // All the variables for this method
+            String arr[] = new String[3];
+            String line;
+            int i = 0;
+
+            // Reading the line and appending to the array
+            while ((line = reader.readLine()) != null) {
+                arr[i] = line;
+                i++;
+            }
+
+            // Printing all the data
+            System.out.println("Number of days you have attended : " + arr[0]);
+            System.out.println("Number of total days : " + arr[1]);
+            System.out.println("Total percentage : " + arr[2]);
+            System.out.println("\n");
+
+        } catch (IOException e) {
+            System.out.println("There was problem while viewing the attendence");
+        }
+    }
+
+    public void setAttendence(String id, double attendedDays, double totalDays) {
+        double percentage = (attendedDays / totalDays) * 100;
+
+        // Converting the data into the correct format
+        String content = attendedDays + "\n" + totalDays + "\n" + percentage;
+
+        // Setting the data
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter("Attendence/" + id + ".txt"))) {
+            writer.write(content);
+        } catch (Exception e) {
+            System.out.println("There was a problem while writing the attendence");
+        }
+
+    }
+
+    public void updateAttendence(boolean isPresent, String id) {
+        String arr[] = new String[3];
+
+        // Getting already entered attendence details
+        try (BufferedReader reader = new BufferedReader(new FileReader("Attendence/" + id + ".txt"))) {
+            String line;
+            int index = 0;
+            while ((line = reader.readLine()) != null) {
+                arr[index] = line;
+                index++;
+            }
+        } catch (Exception e) {
+            System.out.println("There was a problem while updating the attendence");
+        }
+
+        // Updating according to the present status
+        if (isPresent) {
+            setAttendence(id, Double.parseDouble(arr[0]) + 1, Double.parseDouble(arr[1]) + 1);
+        } else {
+            setAttendence(id, Double.parseDouble(arr[0]), Double.parseDouble(arr[1]) + 1);
+        }
     }
 
     public void addInformation(String id, String firstName, String lastName) {
@@ -22,6 +81,7 @@ public class Student extends Main {
         String enrollmentNumber = "" + generateEnrollmentNumber();
         Main.createReminderFiles("Student", id);
 
+        // Writing within the file
         try (BufferedWriter writer = new BufferedWriter(new FileWriter("Ids/Student/" + id + ".txt"))) {
             writer.write(id + System.lineSeparator());
             writer.write(firstName + System.lineSeparator());
@@ -71,13 +131,13 @@ public class Student extends Main {
         // All the objects for this static method
         Reminders r = new Reminders();
         Scanner sc = new Scanner(System.in);
+        Student s = new Student();
 
         System.out.println("\n\n\n");
         System.out.println("Welcome " + id + "!");
 
         System.out.println("----- REMINDER -------");
         r.displayReminders(id, "public");
-
 
         // Main menu for the student database
         while (true) {
@@ -95,7 +155,9 @@ public class Student extends Main {
 
             switch (option) {
                 case 1:
-                    // For Attendence
+                    System.out.println("\n\n");
+                    System.out.println("----- ATTENDENCE -------");
+                    s.viewAttendence(id);
                     break;
                 case 2:
                     // For viewing time table

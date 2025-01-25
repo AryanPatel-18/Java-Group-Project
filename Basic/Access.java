@@ -6,9 +6,6 @@ package Basic;
 // import java.util.Scanner;
 
 public class Access {
-    public void readLine(int lineNumber){
-        // to read a specific line from the code
-    }
 
     public void studentData(String id){
         // for printing student data
