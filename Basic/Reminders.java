@@ -39,8 +39,8 @@ public class Reminders {
         }
 
         // Trying to write the message to the sendId file
-        try (BufferedWriter writer = new BufferedWriter(
-                new FileWriter("Reminders/" + designation + "/Private/" + sendId + ".txt", true))) {
+        // Here the true allows so that the data is not replaced but we can simply add new data on top of it
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter("Reminders/" + designation + "/Private/" + sendId + ".txt", true))) {
             System.out.print("Please enter your message : ");
             String message = sc.nextLine();
             writer.write(message + System.lineSeparator());
@@ -56,8 +56,8 @@ public class Reminders {
 
     // For clearing Private Reminders
     public void clearReminders(String id, String path) {
-        try (BufferedWriter writer = new BufferedWriter(
-                new FileWriter("Reminders/" + path + "/Private/" + id + ".txt"))) {
+        // Just adding a null line so that all the data is deleted
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter("Reminders/" + path + "/Private/" + id + ".txt"))) {
             writer.write(System.lineSeparator());
             System.out.println("Cleared all the reminders!\n\n");
         } catch (Exception e) {
@@ -69,6 +69,9 @@ public class Reminders {
     public void displayReminders(String id, String type) {
         try (BufferedReader reader = new BufferedReader(new FileReader("Reminders/Students/" + type + "/" + id + ".txt"))) {
             String line;
+
+            // Used line builder so that we can easily add or append values to the string, also supports \n which is to leave a line
+            // String builder is the same as a string just using for append feature
             StringBuilder lineBuilder = new StringBuilder();
             
             while ((line = reader.readLine()) != null) {
@@ -76,6 +79,8 @@ public class Reminders {
             }
 
             String conversion = lineBuilder.toString().trim();
+            
+            // Checking if there are any reminders or not
             if(conversion.length() != 0){
                 System.out.println("\n\n");
                 System.out.println(conversion);
@@ -86,10 +91,5 @@ public class Reminders {
         } catch (Exception e) {
             System.out.println("There was a problem while reading the " + type + " reminders");
         }
-    }
-
-    public boolean checkReminders() {
-
-        return false;
     }
 }
