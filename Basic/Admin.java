@@ -1,17 +1,19 @@
 package Basic;
 
+
+// All the imports
+import java.util.*;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.FileReader;
 import java.io.FileWriter;
-// All the imports
-import java.util.Scanner;
 
 
 public class Admin {
     Scanner sc = new Scanner(System.in);
     Access a = new Access();
     Clear c = new Clear();
+    Create ct = new Create();
 
     public void addInformation(String id){
 
@@ -184,6 +186,41 @@ public class Admin {
 
     }
 
+    String generateStaffid(){
+        Random random = new Random();
+        int min = 100000; 
+        int max = 999999;
+        int randomSixDigit = random.nextInt(max - min + 1) + min;
+        String id = "" + randomSixDigit;
+
+        if(!checkStaffId(id)){
+            updateStaffId(id);
+            return id;
+        }
+        return generateStaffid();
+    }
+
+    boolean checkStaffId( String id){
+        try (BufferedReader reader = new BufferedReader(new FileReader("Ids/StaffId.txt"))){
+            String line;
+            if((line = reader.readLine()) != null){
+                if(line.equals(id)){
+                    return true;
+                }
+            }
+        } catch (Exception e) {
+            System.out.println("There was a problem while checking the staff ids");
+        }
+        return false;
+    }
+
+    void updateStaffId(String id){
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter("Ids/StaffId.txt",true))){
+            writer.write(id);
+        } catch (Exception e) {
+            System.out.println("There was a problem while updating the staff id");
+        }
+    }
     public void Menu(String id) {
             // All the objects for the static class
             Scanner sc = new Scanner(System.in);
@@ -203,7 +240,9 @@ public class Admin {
                 System.out.println("6) Set Time Table");
                 System.out.println("7) Update Information");
                 System.out.println("8) Delete User");
-                System.out.println("9) Exit");
+                System.out.println("9) Create Proffessor id");
+                System.out.println("10) Create Staff id");
+                System.out.println("11) Exit");
                 System.out.println("--------------------------------\n\n");
 
                 System.out.print("What do you want to do? : ");
@@ -265,6 +304,12 @@ public class Admin {
                         deleteUser();
                         break;
                     case 9:
+                        // For creating proffessor id
+                        ct.proffUser(generateStaffid());
+                        break;
+                    case 10:    
+                    // For creating staff id 
+                    case 11:
                         System.out.println("Exiting...");
                         sc.close();
                         System.exit(0);

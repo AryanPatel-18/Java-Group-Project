@@ -13,6 +13,7 @@ public class Login {
     Reminders r = new Reminders();
     Clear c = new Clear();
     Create cr = new Create();
+    Proffessor p = new Proffessor();
 
     public void login() {
         System.out.print("Please enter your login id : ");
@@ -75,7 +76,7 @@ public class Login {
             case 4:
                 if (exists = cr.isExist("Proffessor", id)) {
                     exists = true;
-                    proffessorMenu(id);
+                    p.Menu(id);
                 }
                 break;
             case 5:
@@ -93,9 +94,6 @@ public class Login {
 
     }
 
-    final private void proffessorMenu(String id) {
-
-    }
 
     // Super menu will be in this file
     final private void superMenu(String id) {

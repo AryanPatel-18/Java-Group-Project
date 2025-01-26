@@ -42,4 +42,22 @@ class Main {
         }
         return "No line at that point";
     }
+
+    public static void createAttendenceFile(String id){
+        String totalDays = "";
+        try(BufferedReader reader = new BufferedReader(new FileReader("Attendence/TotalDays.txt"))) {
+            totalDays = reader.readLine();
+        } catch (Exception e) {
+            System.out.println("There was a problem while checking the total attendence");
+        }
+        
+        // For creating the total attendence file
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter("Attendence/" + id + ".txt"))){
+            writer.write("0");
+            writer.write(totalDays);
+            writer.write("0");
+        } catch (Exception e) {
+            System.out.println("There was a problem while creating the attendence file");
+        }
+    }
 }

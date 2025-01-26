@@ -23,12 +23,36 @@ public class Create {
         setPassword(id, "Student");
         s.addInformation(id, firstName, lastName); 
         Main.createReminderFiles("Students", id);
+        Main.createAttendenceFile(id);
         Student.Menu(id);
 
     }
 
-    public void proffUser(String id){
-        // For creating proffessor ids
+    public void proffUser( String staffID){
+        System.out.print("Enter the full name of the professor : ");
+        String name = sc.nextLine();
+        System.out.println("Enter the gender : ");
+        String gender = sc.next();
+        System.out.println("Enter the specialization : ");
+        String specialization = sc.next();
+        String id = "PF" + specialization + getId("Proffessor");
+        System.out.println("Enter the contact number : ");
+        String number = sc.next();
+        System.out.println("String enter the address : ");
+        String address = sc.next();
+
+        try(BufferedWriter writer = new BufferedWriter(new FileWriter("Ids/Proffessor/" + id + ".txt"))) {
+            writer.write(id + System.lineSeparator());
+            writer.write(name + System.lineSeparator());
+            writer.write(gender + System.lineSeparator());
+            writer.write(specialization + System.lineSeparator());
+            writer.write(number + System.lineSeparator());
+            writer.write(address + System.lineSeparator());
+            writer.write(staffID + System.lineSeparator());
+        } catch (Exception e) {
+            System.out.print("There was a problem while writing the professor data");
+        }
+
     }
 
     public void adminUser(){
