@@ -89,6 +89,7 @@ public class Student extends Main {
             writer.write(mentorName + System.lineSeparator());
             writer.write(address + System.lineSeparator());
             writer.write(enrollmentNumber + System.lineSeparator());
+            writer.write(getClass(id) + System.lineSeparator());
         } catch (Exception e) {
             System.out.println("There was problem while writing the student data");
         }
@@ -131,18 +132,30 @@ public class Student extends Main {
         return false;
     }
 
+    String getClass(String id){
+        String division = "D";
+        Random random = new Random();
+
+        // Generate a random number between 1 and 3
+        int randomNumber = random.nextInt(4) + 1; 
+        division = division + randomNumber;
+        // Print the random number
+        return division;
+    }
+
     public static void Menu(String id) {
 
         // All the objects for this static method
         Reminders r = new Reminders();
         Scanner sc = new Scanner(System.in);
         Student s = new Student();
+        Timetable t = new Timetable();
 
         System.out.println("\n\n\n");
-        System.out.println("Welcome " + id + "!");
+        System.out.println("\t\tWelcome " + id + "!\n");
 
         System.out.println("----- REMINDER -------");
-        r.displayReminders(id, "public");
+        r.displayReminders(id, "public", "Student");
 
         // Main menu for the student database
         while (true) {
@@ -166,6 +179,8 @@ public class Student extends Main {
                     break;
                 case 2:
                     // For viewing time table
+                    t.viewTimeTable(Main.readLine(7, id , "Student"));
+                    break;
                 case 3:
                     r.sendReminder(id);
                     break;
@@ -175,7 +190,7 @@ public class Student extends Main {
                 // To clear private reminders
                 case 5:
                     System.out.println("----- REMINDER -------");
-                    r.displayReminders(id, "Private");
+                    r.displayReminders(id, "Private", "Student");
                     break;
                 // To view private reminders
                 case 6:

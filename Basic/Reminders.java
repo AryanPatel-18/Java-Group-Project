@@ -116,8 +116,8 @@ public class Reminders {
     }
 
     // Displaying different reminders
-    public void displayReminders(String id, String type) {
-        try (BufferedReader reader = new BufferedReader(new FileReader("Reminders/Students/" + type + "/" + id + ".txt"))) {
+    public void displayReminders(String id, String type, String path) {
+        try (BufferedReader reader = new BufferedReader(new FileReader("Reminders/" +path+"/" + type + "/" + id + ".txt"))) {
             String line;
 
             // Used line builder so that we can easily add or append values to the string, also supports \n which is to leave a line

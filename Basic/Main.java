@@ -1,6 +1,8 @@
 package Basic;
 
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.FileReader;
 import java.io.FileWriter;
 
 class Main {
@@ -23,7 +25,21 @@ class Main {
     }
 
     // Read particular line from the text file
-    public void readLine(int lineNumber){
+    public static String readLine(int lineNumber, String id, String path){
         // to read a specific line from the code
+
+        try(BufferedReader reader = new BufferedReader(new FileReader("Ids/" + path + "/" + id + ".txt"))) {
+            String line;
+            int count = 1;
+            while((line = reader.readLine()) != null){
+                if(count == lineNumber){
+                    return line;
+                }
+                count ++;
+            }
+        } catch (Exception e) {
+            System.out.println("There was a problem while reading the specific line");
+        }
+        return "No line at that point";
     }
 }

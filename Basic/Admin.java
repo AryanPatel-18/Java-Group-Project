@@ -190,6 +190,7 @@ public class Admin {
             Access a = new Access();
             Student s = new Student();
             Reminders r = new Reminders();
+            Timetable t = new Timetable();
 
             // Main menu for the student database
             while (true) {
@@ -199,7 +200,7 @@ public class Admin {
                 System.out.println("3) Send Private Message");
                 System.out.println("4) Clear Reminders");
                 System.out.println("5) View Reminders");
-                System.out.println("6) Update Time Table");
+                System.out.println("6) Set Time Table");
                 System.out.println("7) Update Information");
                 System.out.println("8) Delete User");
                 System.out.println("9) Exit");
@@ -241,10 +242,18 @@ public class Admin {
                         break;
                     // To clear private reminders
                     case 5:
-                        r.displayReminders(id, "Private");
+                        r.displayReminders(id, "Private", "Admin");
                         break;
                     case 6:
                         // To update the time table
+                        System.out.println("Enter the division : ");
+                        String division = sc.next();
+                        if(t.checkDivision(division)){
+                            t.setTimetable(division);
+                        }else{
+                            System.out.print("Please enter a valid division");
+                        }
+                        break;
                     case 7:
                         // Update Information
                         System.out.print("Enter the id you want to update : ");
