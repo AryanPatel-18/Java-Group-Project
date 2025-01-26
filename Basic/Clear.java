@@ -30,6 +30,9 @@ public class Clear {
                 try (BufferedWriter writer = new BufferedWriter(new FileWriter("Ids/" + toBeCleared[i] + "/registered.txt"))){
                     writer.write("registered" + System.lineSeparator());
                     writer.write("IdNumber" + System.lineSeparator());
+                    if(toBeCleared[i].equals("Student")){
+                        writer.write("EnrollmentNumber" + System.lineSeparator());
+                    }
                 } catch (Exception e) {
                     System.out.println("There was a problem while creating the new registered file");
                 }

@@ -1,5 +1,6 @@
 registered
 IdNumber
+EnrollmentNumber
 STAP14
 STAP15
 STAP16

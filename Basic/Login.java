@@ -55,7 +55,7 @@ public class Login {
             case 1:
                 if (exists = isExist("Admin", id)) {
                     exists = true;
-                    adminMenu(id);
+                    Admin.Menu(id);
                 }
                 break;
             case 2:
@@ -108,9 +108,7 @@ public class Login {
     }
 
     // All the menus are to be moved to their individual files
-    final private void adminMenu(String id) {
-
-    }
+ 
 
     final private void proffessorMenu(String id) {
 

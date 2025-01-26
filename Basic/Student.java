@@ -107,6 +107,11 @@ public class Student extends Main {
         // Generate a random 9-digit number
         int randomNineDigitNumber = 100000000 + random.nextInt(900000000);
         if (!checkEnrollmentNumber(randomNineDigitNumber)) {
+            try (BufferedWriter writer = new BufferedWriter(new FileWriter("Ids/Student/EnrollmentNumber.txt", true))){
+                writer.write(randomNineDigitNumber);
+            } catch (Exception e) {
+                System.out.println("There was a problem while updating the enrollment number");
+            }
             return randomNineDigitNumber;
         }
         return generateEnrollmentNumber();
@@ -125,6 +130,7 @@ public class Student extends Main {
         }
         return false;
     }
+
 
     public static void Menu(String id) {
 

@@ -1,5 +1,8 @@
 package Basic;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+
 // Changes can occur
 // All the imports needed
 // import java.io.*;
@@ -47,6 +50,20 @@ public class Access {
             return 5;
         }
         return 0;
+    }
+
+    public boolean idExists(String id , String path){
+        try (BufferedReader reader = new BufferedReader(new FileReader("Ids/" + path + "/registered.txt"))){
+            String line;
+            while((line = reader.readLine()) != null){
+                if(line.equals(id)){
+                    return true;
+                }
+            }
+        } catch (Exception e) {
+            System.out.println("There was a problem while reading the " + path + " registered file");
+        }
+        return false;
     }
 
 }
