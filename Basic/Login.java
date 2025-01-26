@@ -93,11 +93,6 @@ public class Login {
 
     }
 
-
-
-    // All the menus are to be moved to their individual files
- 
-
     final private void proffessorMenu(String id) {
 
     }
@@ -127,11 +122,10 @@ public class Login {
         }
     }
 
+    // This is to be moved
     final private void staffMenu(String id) {
 
     }
-
-
 
     public boolean checkPassword(String id, String path) {
         System.out.print("Please enter the password for the id : ");

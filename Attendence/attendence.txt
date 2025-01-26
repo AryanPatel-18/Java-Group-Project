@@ -1,1 +1,0 @@
-The attedence of students with their respective ids will be stored here for each month

@@ -11,6 +11,7 @@ import java.util.Scanner;
 public class Admin {
     Scanner sc = new Scanner(System.in);
     Access a = new Access();
+    Clear c = new Clear();
 
     public void addInformation(String id){
 
@@ -40,7 +41,7 @@ public class Admin {
         }
     }
 
-    final private void updateUser(String id){
+    private void updateUser(String id){
         System.out.println(id);
         int option = a.checkPermission(id);
         String designation = "";
@@ -57,7 +58,7 @@ public class Admin {
             designation = "Professor";
         }
         if(option > 4 || option < 2){
-            System.out.println("You cannot update this information");
+            System.out.println("You cannot update this id");
             return;
         }
         if(a.idExists(id,designation)){
@@ -77,7 +78,7 @@ public class Admin {
         }
     }
 
-    final private void updateStudentInfo(String id){
+    private void updateStudentInfo(String id){
         // We can update all info or just any info
         System.out.println("--------------------------");
         System.out.println("1) First Name");
@@ -105,15 +106,15 @@ public class Admin {
         addNewInfo(infoArr, "Student", id);
     }
 
-    final private void updateStaffInfo(String id){
+    private void updateStaffInfo(String id){
 
     }
 
-    final private void updateProffInfo(String id){
+    private void updateProffInfo(String id){
 
     }
 
-    final private String[] createInfoArray(String id, String path){
+    private String[] createInfoArray(String id, String path){
         StringBuilder infoString = new StringBuilder();
 
         // Just taking all the values from the text file then adding them to a string with space between them and then just using split
@@ -130,7 +131,7 @@ public class Admin {
         return infoArr;
     }
 
-    final private void addNewInfo(String[] arr, String path, String id){
+    private void addNewInfo(String[] arr, String path, String id){
 
         // Just travelling through the array and added all the new info back to the text file
         // In this case all the orignal data is deleted once and then new data is added
@@ -144,7 +145,46 @@ public class Admin {
         
     }
 
-    final public void Menu(String id) {
+    private void deleteUser(){
+        System.out.print("Enter the id you want to delete");
+        String inputId = sc.next();
+        int option = a.checkPermission(inputId);
+        String designation = " ";
+        if (option == 2) {
+            designation = "Student";
+        }
+        
+        if (option == 3) {
+            designation = "Staff";
+        }
+        
+        if (option == 4) {
+            designation = "Professor";
+        }
+        if(option > 4 || option < 2){
+            System.out.println("You cannot delete this id");
+            return;
+        }
+
+        StringBuilder data = new StringBuilder();
+        try (BufferedReader reader = new BufferedReader(new FileReader("Ids/" + designation + "/registered.txt"))){
+            String line;
+            while((line =reader.readLine())!= null){
+                if(line.equals(inputId)){
+                    continue;
+                }else{
+                    data.append(line + " ");
+                }
+            }
+            addNewInfo(data.toString().split(" "), designation, "registered");
+            c.deleteUserFiles(inputId, designation);
+        } catch (Exception e) {
+            System.out.println("There was a problem while updating the registered file");
+        }
+
+    }
+
+    public void Menu(String id) {
             // All the objects for the static class
             Scanner sc = new Scanner(System.in);
             Access a = new Access();
@@ -213,6 +253,8 @@ public class Admin {
                         break;
                     case 8:
                         // To delete User
+                        deleteUser();
+                        break;
                     case 9:
                         System.out.println("Exiting...");
                         sc.close();

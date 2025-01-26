@@ -131,7 +131,6 @@ public class Student extends Main {
         return false;
     }
 
-
     public static void Menu(String id) {
 
         // All the objects for this static method
