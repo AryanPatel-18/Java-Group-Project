@@ -7,7 +7,6 @@ import java.util.Scanner;
 public class Create {
 
     // All the objects needed for the class
-    // Login l = new Login();
     Scanner sc = new Scanner(System.in);
     Student s = new Student();
     Admin a = new Admin();
@@ -119,6 +118,4 @@ public class Create {
         }
         return false;
     }
-
-
 }
