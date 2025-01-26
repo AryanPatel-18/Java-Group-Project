@@ -9,6 +9,7 @@ public class Login {
     // All the objects for this class
     Scanner sc = new Scanner(System.in);
     Access a = new Access();
+    Admin ad = new Admin();
     Reminders r = new Reminders();
     Clear c = new Clear();
     Create cr = new Create();
@@ -56,7 +57,7 @@ public class Login {
             case 1:
                 if (exists = cr.isExist("Admin", id)) {
                     exists = true;
-                    Admin.Menu(id);
+                    ad.Menu(id);
                 }
                 break;
             case 2:

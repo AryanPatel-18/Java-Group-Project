@@ -44,12 +44,12 @@ public class Create {
                 System.out.println("This id already exists please try another one");
             }
         }
-        id = id + getId("Admin");
+        id = "AD" + id + getId("Admin");
         a.addInformation(id);
         setPassword(id, "Admin");
         registerUser(id, "Admin");
         Main.createReminderFiles("Admin", id);
-        Admin.Menu(id);
+        a.Menu(id);
 
     }
 
