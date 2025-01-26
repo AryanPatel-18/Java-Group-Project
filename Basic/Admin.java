@@ -1,10 +1,42 @@
 package Basic;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
 // All the imports
 import java.util.Scanner;
 
 
 public class Admin {
+    Scanner sc = new Scanner(System.in);
+
+    public void addInformation(String id){
+
+        // Format for the information of the admin file
+        System.out.print("Enter the full name : ");
+        String name = sc.nextLine();
+        System.out.print("Enter the post : ");
+        String post = sc.next();
+        System.out.print("Enter contact number : ");
+        String number = sc.next();
+        System.out.print("Enter the specialization : ");
+        String specialization = sc.next();
+        System.out.print("Enter the language spoken : ");
+        String language = sc.next();
+        System.out.print("Enter the gender : ");
+        String gender = sc.next();
+
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter("Ids/Admin/" + id + ".txt"))){
+            writer.write(name + System.lineSeparator());
+            writer.write(post + System.lineSeparator());
+            writer.write(number + System.lineSeparator());
+            writer.write(specialization + System.lineSeparator());
+            writer.write(language + System.lineSeparator());
+            writer.write(gender + System.lineSeparator());
+        } catch (Exception e) {
+            System.out.println("There was a problem while setting the admin info");
+        }
+    }
+
     final public static void Menu(String id) {
             // All the objects for the static class
             Scanner sc = new Scanner(System.in);

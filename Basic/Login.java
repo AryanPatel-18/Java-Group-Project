@@ -11,6 +11,7 @@ public class Login {
     Access a = new Access();
     Reminders r = new Reminders();
     Clear c = new Clear();
+    Create cr = new Create();
 
     public void login() {
         System.out.print("Please enter your login id : ");
@@ -53,25 +54,25 @@ public class Login {
                 System.out.println("Please enter a valid id");
                 break;
             case 1:
-                if (exists = isExist("Admin", id)) {
+                if (exists = cr.isExist("Admin", id)) {
                     exists = true;
                     Admin.Menu(id);
                 }
                 break;
             case 2:
-                if (exists = isExist("Student", id)) {
+                if (exists = cr.isExist("Student", id)) {
                     exists = true;
                     Student.Menu(id);
                 }
                 break;
             case 3:
-                if (exists = isExist("Staff", id)) {
+                if (exists = cr.isExist("Staff", id)) {
                     exists = true;
                     staffMenu(id);
                 }
                 break;
             case 4:
-                if (exists = isExist("Proffessor", id)) {
+                if (exists = cr.isExist("Proffessor", id)) {
                     exists = true;
                     proffessorMenu(id);
                 }
@@ -91,21 +92,7 @@ public class Login {
 
     }
 
-    boolean isExist(String path, String fileName) {
 
-        // Checking the existence of the account in the database
-        try (BufferedReader reader = new BufferedReader(new FileReader("Ids/" + path + "/registered.txt"))) {
-            String line;
-            while ((line = reader.readLine()) != null) {
-                if (line.equalsIgnoreCase(fileName)) {
-                    return true;
-                }
-            }
-        } catch (Exception e) {
-            System.out.println("There was a problem while reading the file database");
-        }
-        return false;
-    }
 
     // All the menus are to be moved to their individual files
  
@@ -114,8 +101,29 @@ public class Login {
 
     }
 
+    // Super menu will be in this file
     final private void superMenu(String id) {
-        c.clearDataBase();
+        System.out.println("--------------------");
+        System.out.println("1) Clear database");
+        System.out.println("2) Add admin");
+        System.out.println("--------------------");
+        
+        while(true){
+            System.out.print("Enter what you want to do : ");
+            int option = sc.nextInt();
+
+            switch (option) {
+                case 1:
+                    c.clearDataBase();
+                    break;
+                case 2:
+                    cr.adminUser();
+                    break;
+                default:
+                    System.out.println("Please enter a valid option");
+                    break;
+            }
+        }
     }
 
     final private void staffMenu(String id) {

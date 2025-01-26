@@ -7,9 +7,10 @@ import java.util.Scanner;
 public class Create {
 
     // All the objects needed for the class
-    Login l = new Login();
+    // Login l = new Login();
     Scanner sc = new Scanner(System.in);
     Student s = new Student();
+    Admin a = new Admin();
 
     public void studentUser(){
         System.out.print("Please enter your first name : ");
@@ -19,7 +20,6 @@ public class Create {
 
         // Specific way to create user id
         String id = "ST" + firstName.toUpperCase().charAt(0) + lastName.toUpperCase().charAt(0) + getId("Student");
-        updateId("Student");
         registerUser(id, "Student");
         setPassword(id, "Student");
         s.addInformation(id, firstName, lastName); 
@@ -32,9 +32,25 @@ public class Create {
         // For creating proffessor ids
     }
 
-    public void adminUser(String id){
+    public void adminUser(){
         // For creating admin user which requires a super user
-        // There can be only one super user
+        String id = "";
+        while(true){
+            System.out.print("Enter the id : ");
+            id = sc.next();
+            if(!isExist("Admin",id)){
+                break;
+            }else{
+                System.out.println("This id already exists please try another one");
+            }
+        }
+        id = id + getId("Admin");
+        a.addInformation(id);
+        setPassword(id, "Admin");
+        registerUser(id, "Admin");
+        Main.createReminderFiles("Admin", id);
+        Admin.Menu(id);
+
     }
 
     void registerUser(String id, String path){
@@ -53,6 +69,7 @@ public class Create {
         String currentId = "";
         try (BufferedReader reader = new BufferedReader(new FileReader("Ids/" + path + "/IdNumber.txt"))){
             currentId = reader.readLine();
+            updateId(path);
             return Integer.parseInt(currentId);
         } catch (Exception e) {
             System.out.println("There was a problem while reading the id number file");
@@ -85,6 +102,22 @@ public class Create {
         } catch (Exception e) {
             System.out.println("There was a problem while saving the password");
         }
+    }
+
+    public boolean isExist(String path, String fileName) {
+
+        // Checking the existence of the account in the database
+        try (BufferedReader reader = new BufferedReader(new FileReader("Ids/" + path + "/registered.txt"))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                if (line.equalsIgnoreCase(fileName)) {
+                    return true;
+                }
+            }
+        } catch (Exception e) {
+            System.out.println("There was a problem while reading the file database");
+        }
+        return false;
     }
 
 
