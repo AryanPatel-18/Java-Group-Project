@@ -8,6 +8,7 @@ public class Timetable {
 
     Scanner sc = new Scanner(System.in);
     public boolean checkDivision(String division){
+        // This is to check if the division entered in input is valid or not
         try(BufferedReader reader = new BufferedReader(new FileReader("TimeTables/list.txt"))) {
             String line;
             while((line = reader.readLine()) != null){
@@ -21,9 +22,11 @@ public class Timetable {
         return false;
     }
     
-    
     void setTimetable(String division) {
+        // Setting a array to take in all the days and their lectures as input
         String arr[][] = new String[6][4];
+
+        // Running the array to get input for each day
         for(int i = 0 ; i < arr.length ; i++){
             System.out.println("Enter lectures for " + getDay(i));
             for(int j = 0 ; j < arr[i].length ; j++){
@@ -34,6 +37,7 @@ public class Timetable {
             System.out.println("\n");
         }
 
+        // Writing all the content in format in the text file
         try (BufferedWriter writer = new BufferedWriter(new FileWriter("TimeTables/" + division + ".txt"))){
             for(int i = 0 ; i < arr.length ; i++){
                 for(int j = 0 ; j < arr[i].length ; j++){
@@ -81,6 +85,7 @@ public class Timetable {
     }
 
     String getDay(int day) {
+        // This is to get the day but sending the value of index from the array
         if (day == 0)
             return "Monday";
         if (day == 1)
